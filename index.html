@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+        <link rel="stylesheet" href="styles.css"></link>
+        <script src="./main.js"></script>
+    </head>
+
+    <body>
+
+        <div class="bg-blue-950 transition-all">
+            <nav x-data="{ mobileNavOpen: false }" class="px-4 py-4">
+                <div class="flex sm:hidden gap-5" x-cloak>
+                    <button @click="mobileNavOpen = !mobileNavOpen">
+
+                        <!-- burger icon for opening mobile menu -->
+                        <svg x-show="!mobileNavOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                        </svg>
+
+                        <!-- x icon for closing mobile menu -->
+                        <svg x-show="mobileNavOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                <img src="https://static.wixstatic.com/media/364e78_4ec0f792d9fb46adb8d1d2a14bcd4670~mv2.png/v1/crop/x_0,y_2,w_800,h_171/fill/w_182,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_lime.png" ></img>
+
+
+                </div>
+
+
+                <!-- Mobile Navigation -->
+                <div x-show="mobileNavOpen" class="text-white block sm:hidden items-center justify-center" x-cloak>
+                    <a href="#" class="block">Link 1</a>
+                    <a href="#" class="block">Link 2</a>
+                    <a href="#" class="block">Link 3</a>
+                    <a href="#" class="block">Link 4</a>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <div class="text-white hidden sm:flex gap-x-4 items-center">
+                <img src="https://static.wixstatic.com/media/364e78_4ec0f792d9fb46adb8d1d2a14bcd4670~mv2.png/v1/crop/x_0,y_2,w_800,h_171/fill/w_182,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_lime.png"></img>
+                    <a href="#" class="block">Link 1</a>
+                    <a href="#" class="block">Link 2</a>
+                    <a href="#" class="block">Link 3</a>
+                    <a href="#" class="block">Link 4</a>
+                </div>
+
+
+            </nav>
+
+        </div>
+
+    </body>
+
+</html>
