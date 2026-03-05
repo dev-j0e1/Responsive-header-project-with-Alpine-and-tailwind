@@ -4,6 +4,7 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <link rel="stylesheet" href="styles.css"></link>
         <script src="./main.js"></script>
+        <title>Responsive Header + mobile Project</title>
     </head>
 
     <body class="bg-blue-50">
@@ -13,7 +14,7 @@
 
                 <div @click.away="mobileNavOpen = false" class="flex sm:hidden gap-5" x-cloak>
 
-                    <div id="logo" class="text-4xl text-nowrap text-white" font-family="JetBrains Mono, Fira Code, monospace">&lt; j0e1<span class="text-purple-400 size-5 select-none">.dev </span>/&gt;</div>
+                    <div id="logo" class="text-4xl text-nowrap text-white" font-family="JetBrains Mono, Fira Code, monospace">&lt; j0e1<span class="text-blue-400 size-5 select-none">.dev </span>/&gt;</div>
 
                     <button  @click="mobileNavOpen = !mobileNavOpen" class="absolute right-4">
                         <!-- burger icon for opening mobile menu -->

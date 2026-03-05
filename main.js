@@ -2,9 +2,9 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("headerData", () => ({
         mobileNavOpen: false,
         links: [
+            {name: "Github Profile", href: "https://github.com/dev-j0e1"},
             {name: "Wordle Clone Project", href: "https://dev-j0e1.github.io/wordl-like-game-small-project/"},
             {name: "CSS Battle Profile", href: "https://cssbattle.dev/player/j0e1_dev"},
-            {name: "Github Profile", href: "https://github.com/dev-j0e1"},
             {name: "Clash of Code Profile", href: "https://www.codingame.com/profile/c67bb3cbb1bd21889f0c836c5c7f8bd04321396"}
         ]
         
