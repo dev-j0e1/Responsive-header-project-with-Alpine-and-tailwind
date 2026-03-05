@@ -9,7 +9,7 @@
     <body>
 
         <div class="bg-blue-950 transition-all">
-            <nav x-data="{ mobileNavOpen: false }" class="px-4 py-4">
+            <nav x-data="headerData" class="px-4 py-4">
                 <div class="flex sm:hidden gap-5" x-cloak>
                     <button @click="mobileNavOpen = !mobileNavOpen">
 
@@ -23,7 +23,11 @@
                             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
                         </svg>
                     </button>
-                <img src="https://static.wixstatic.com/media/364e78_4ec0f792d9fb46adb8d1d2a14bcd4670~mv2.png/v1/crop/x_0,y_2,w_800,h_171/fill/w_182,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_lime.png" ></img>
+
+                    <!-- inert mobile image here  -->
+                     <img src="https://static.wixstatic.com/media/364e78_4ec0f792d9fb46adb8d1d2a14bcd4670~mv2.png/v1/crop/x_0,y_2,w_800,h_171/fill/w_178,h_38,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_lime.png"></img>
+                    <!--  -->
+
 
 
                 </div>
@@ -31,19 +35,21 @@
 
                 <!-- Mobile Navigation -->
                 <div x-show="mobileNavOpen" class="text-white block sm:hidden items-center justify-center" x-cloak>
-                    <a href="#" class="block">Link 1</a>
-                    <a href="#" class="block">Link 2</a>
-                    <a href="#" class="block">Link 3</a>
-                    <a href="#" class="block">Link 4</a>
+                    <template x-for="link in links" :key="link.name">
+                        <a :href="link.href" class="block" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
+                    </template>
                 </div>
 
                 <!-- Desktop Navigation -->
                 <div class="text-white hidden sm:flex gap-x-4 items-center">
-                <img src="https://static.wixstatic.com/media/364e78_4ec0f792d9fb46adb8d1d2a14bcd4670~mv2.png/v1/crop/x_0,y_2,w_800,h_171/fill/w_182,h_39,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_lime.png"></img>
-                    <a href="#" class="block">Link 1</a>
-                    <a href="#" class="block">Link 2</a>
-                    <a href="#" class="block">Link 3</a>
-                    <a href="#" class="block">Link 4</a>
+
+                    <!-- insert desktop image here  -->
+                    <img src="https://static.wixstatic.com/media/364e78_4ec0f792d9fb46adb8d1d2a14bcd4670~mv2.png/v1/crop/x_0,y_2,w_800,h_171/fill/w_178,h_38,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/logo_lime.png"></img>
+                    <!--  -->
+
+                    <template x-for="link in links" :key="link.name">
+                        <a :href="link.href" class="block" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
+                    </template>
                 </div>
 
 
