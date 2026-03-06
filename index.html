@@ -12,7 +12,7 @@
     <body class="bg-blue-50">
 
         <div class="bg-blue-950 py-5">
-            <nav x-data="headerData" class="px-4 py-5">
+            <nav id="nav" x-data="headerData" class="px-4 py-5">
 
                 <div @click.away="mobileNavOpen = false" class="flex sm:hidden gap-5" x-cloak>
 
@@ -37,7 +37,7 @@
                  <!-- Really need to add a smooth transition to this element maybe by toggling a class called fade in and fade out? will have to look into it  -->
                  <div x-show="mobileNavOpen" class="absolute text-white bg-blue-950  rounded-2xl sm:hidden items-center justify-center " style="padding: 25px;"x-cloak :class="{ 'slideDown' :  mobileNavOpen }" :aria-expanded="mobileNavOpen">
                     <template x-for="link in links" :key="link.name">
-                        <a :href="link.href" class="block border-black hover:bg-blue-200 px-4 text-nowrap hover:text-black transition-colors duration-500 rounded-2xl" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
+                        <a :aria-expanded="mobileNavOpen" aria-controls="nav" :href="link.href" class="block border-black hover:bg-blue-200 px-4 text-nowrap hover:text-black transition-colors duration-500 rounded-2xl" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
                     </template>
                 </div>
 
@@ -46,7 +46,7 @@
                      <div id="logo" class="text-4xl text-nowrap" font-family="JetBrains Mono, Fira Code, monospace">&lt; j0e1<span class="text-purple-400 size-5 select-none">.dev </span>/&gt;</div>
 
                     <template x-for="link in links" :key="link.name" >
-                        <a :href="link.href" class="block underline text-gray-200 hover:bg-black hover:no-underline rounded-3xl hover:px-4 hover:py-1 transition-all" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
+                        <a aria-controls="nav"  :href="link.href" class="block underline text-gray-200 hover:bg-black hover:no-underline rounded-3xl hover:px-4 hover:py-1 transition-all" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
                     </template>
                 </div>
             </nav>
