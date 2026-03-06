@@ -2,19 +2,21 @@
 
 @keyframes slideDown {
     0% {
-        opacity: 0%;
-        transform: translate(0px, -100px)
+        transform: translate(0px, -150px)
     }
     100% {
-        opacity: 100%;
-        transform: translate(0px, 10px) 
+        transform: translate(0px, 0px) 
     }
+}
+#logo {
+    z-index: 2;
 }
 
 .slideDown {
     right: 0px;
-    animation: slideDown 1s ease;
-    transform: translate(0px, 10px) 
+    animation: slideDown 0.8s ease;
+    transition: color;
+    z-index: 1;
 }
 
 * {
@@ -22,6 +24,7 @@
 }
 
 button {
+    z-index: 2;
     cursor: pointer;
 }
 

@@ -18,7 +18,7 @@
 
                     <div id="logo" class="text-4xl text-nowrap text-white" font-family="JetBrains Mono, Fira Code, monospace">&lt; j0e1<span class="text-blue-400 size-5 select-none">.dev </span>/&gt;</div>
 
-                    <button  @click="mobileNavOpen = !mobileNavOpen" class="absolute right-4">
+                    <button  @click="mobileNavOpen = !mobileNavOpen" class="absolute right-4 hover:scale-150 transition-all">
                         <!-- burger icon for opening mobile menu -->
                         <svg x-show="!mobileNavOpen" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" class="size-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -35,7 +35,7 @@
 
                 <!-- Mobile Navigation -->
                  <!-- Really need to add a smooth transition to this element maybe by toggling a class called fade in and fade out? will have to look into it  -->
-                 <div x-show="mobileNavOpen" class="absolute text-white bg-blue-950  rounded-2xl sm:hidden items-center justify-center " style="padding: 25px;"x-cloak :class="{ 'slideDown' :  mobileNavOpen }">
+                 <div x-show="mobileNavOpen" class="absolute text-white bg-blue-950  rounded-2xl sm:hidden items-center justify-center " style="padding: 25px;"x-cloak :class="{ 'slideDown' :  mobileNavOpen }" :aria-expanded="mobileNavOpen">
                     <template x-for="link in links" :key="link.name">
                         <a :href="link.href" class="block border-black hover:bg-blue-200 px-4 text-nowrap hover:text-black transition-colors duration-500 rounded-2xl" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
                     </template>
