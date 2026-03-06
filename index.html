@@ -1,8 +1,10 @@
 <html>
     <head>
+
+
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-        <link rel="stylesheet" href="styles.css"></link>
+        <link rel="stylesheet" href="./styles.css"></link>
         <script src="./main.js"></script>
         <title>Responsive Header + mobile Project</title>
     </head>
@@ -33,7 +35,7 @@
 
                 <!-- Mobile Navigation -->
                  <!-- Really need to add a smooth transition to this element maybe by toggling a class called fade in and fade out? will have to look into it  -->
-                <div x-show="mobileNavOpen" class="text-white block sm:hidden items-center justify-center" style="padding: 25px;"x-cloak>
+                 <div x-show="mobileNavOpen" class="absolute text-white bg-blue-950  rounded-2xl sm:hidden items-center justify-center " style="padding: 25px;"x-cloak :class="{ 'slideDown' :  mobileNavOpen }">
                     <template x-for="link in links" :key="link.name">
                         <a :href="link.href" class="block border-black hover:bg-blue-200 px-4 text-nowrap hover:text-black transition-colors duration-500 rounded-2xl" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
                     </template>

@@ -1,5 +1,22 @@
 @import "tailwindcss";
 
+@keyframes slideDown {
+    0% {
+        opacity: 0%;
+        transform: translate(0px, -100px)
+    }
+    100% {
+        opacity: 100%;
+        transform: translate(0px, 10px) 
+    }
+}
+
+.slideDown {
+    right: 0px;
+    animation: slideDown 1s ease;
+    transform: translate(0px, 10px) 
+}
+
 * {
     user-select: none;
 }
