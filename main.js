@@ -9,7 +9,13 @@ document.addEventListener("alpine:init", () => {
         ]
         
         })
-    )
+    ),
+    Alpine.data("loginData", () => ({
+        loggedIn: false,
+        rememberMe: localStorage.rememberMe && JSON.parse(localStorage.rememberMe) ? JSON.parse(localStorage.rememberMe): false,
+        email: JSON.parse(localStorage.getItem('rememberMe')) ? (localStorage.getItem('savedEmail') ?? '') : '' 
+    }))
+
 })
 
 

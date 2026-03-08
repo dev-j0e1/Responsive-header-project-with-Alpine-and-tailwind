@@ -50,7 +50,30 @@
                     </template>
                 </div>
             </nav>
+        </div>
+
+        <div x-data="loginData" x-init="$watch('rememberMe', value => localStorage.rememberMe = JSON.stringify(value))">
+            <form class="grid" @submit.prevent="localStorage.setItem('savedEmail', email)"> 
+
+                <label>Email</label>
+                <input id="email-input"  placeholder="Enter email..." :value="email" x-model="email"></input>
+
+                <label>Password</label>
+                <input id="password-input" placeholder="Enter password..."></input>
+
+
+                <label>Remember Me</label>
+                <input type="checkbox" id="rememberMe-checkbox" x-model="rememberMe"></input>
+
+                <!-- TODO: This button needs to stay disabled until email is valid and is not empty, also password and email need to be filled to proceed (show error if not) -->
+                <button id="signIn-button" type="submit">Log In</button>
+
+                <!-- TODO: Show a pop up for successful log in (check user inputted details converted to hash and check against hash stored in the backend) -->
+
+            </form>
+
 
         </div>
+
     </body>
 </html>
