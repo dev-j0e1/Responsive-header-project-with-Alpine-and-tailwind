@@ -53,25 +53,34 @@
         </div>
 
         <div x-data="loginData" x-init="$watch('rememberMe', value => localStorage.rememberMe = JSON.stringify(value))">
-            <form class="grid" @submit.prevent="localStorage.setItem('savedEmail', email)"> 
 
-                <label>Email</label>
-                <input id="email-input"  placeholder="Enter email..." :value="email" x-model="email"></input>
+            <form class="grid justify-center gap-3" @submit.prevent="localStorage.setItem('savedEmail', email)"> 
 
-                <label>Password</label>
-                <input id="password-input" placeholder="Enter password..."></input>
+                <div id="email-container" class="grid">
+                    <label>Email</label>
+                    <input id="email-input" class="border-2 border-gray-400 login-input" style="width: 60vw"  :value="email" x-model="email"></input>
+                </div>
 
+                <div id="password-container" class="grid">
+                    <label>Password</label>
+                    <input id="password-input" class="border-2 border-gray-400 login-input" style="width: 60vw" ></input>
+                </div>
 
-                <label>Remember Me</label>
-                <input type="checkbox" id="rememberMe-checkbox" x-model="rememberMe"></input>
+                <div id="rememberMe-container" class="flex gap-2">
+                     <input type="checkbox" id="rememberMe-checkbox" x-model="rememberMe"></input><label>Remember Me</label>
+                </div>
 
                 <!-- TODO: This button needs to stay disabled until email is valid and is not empty, also password and email need to be filled to proceed (show error if not) -->
-                <button id="signIn-button" type="submit" @click="signIn(email, document.querySelector('#password-input').value)">Log In</button>
+                <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75" id="signIn-button" type="submit" @click="login(email, document.querySelector('#password-input').value)" style="width: fit-content">Log In</button>
 
                 <!-- TODO: Show a pop up for successful log in (check user inputted details converted to hash and check against hash stored in the backend) -->
 
             </form>
 
+            <!-- populate this element with the necessary code to show the result of the signin function -->
+            <div id="login-result-modal">
+
+            </div>
 
         </div>
 

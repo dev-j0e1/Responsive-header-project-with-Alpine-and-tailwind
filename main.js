@@ -18,7 +18,7 @@ document.addEventListener("alpine:init", () => {
             let emailRegex = /^[A-Za-z0-9_-]+\.?[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\.[A-Za-z]{2,}){1,3}$/
             return emailRegex.test(emailString) 
         },
-        signIn: function(email, password) {
+        login: function(email, password) {
             if (!email || !password || !this.emailLooksValid(email)) {
                 // TODO: add a check in here to also check if the credentials are valid (meaning the hash of the entered credentials matches one of the stored hashes)
                 console.log("Login Failed :(")
