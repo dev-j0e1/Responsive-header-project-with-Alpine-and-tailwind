@@ -13,14 +13,30 @@ document.addEventListener("alpine:init", () => {
     Alpine.data("loginData", () => ({
         loggedIn: false,
         rememberMe: localStorage.rememberMe && JSON.parse(localStorage.rememberMe) ? JSON.parse(localStorage.rememberMe): false,
-        email: JSON.parse(localStorage.getItem('rememberMe')) ? (localStorage.getItem('savedEmail') ?? '') : '' 
+        email: JSON.parse(localStorage.getItem('rememberMe')) ? (localStorage.getItem('savedEmail') ?? '') : '' ,
+        emailLooksValid: function(emailString) {
+            let emailRegex = /^[A-Za-z0-9_-]+\.?[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\.[A-Za-z]{2,}){1,3}$/
+            return emailRegex.test(emailString) 
+        },
+        signIn: function(email, password) {
+            if (!email || !password || !this.emailLooksValid(email)) {
+                // TODO: add a check in here to also check if the credentials are valid (meaning the hash of the entered credentials matches one of the stored hashes)
+                console.log("Login Failed :(")
+                return
+            }
+
+            console.log("Login successful!")
+
+        }
+
     }))
 
 })
 
 
+
 document.addEventListener("keydown", e=> {
-    let dataElement = document.querySelector("[x-data]")
+    let dataElement = document.querySelector("[x-data='headerData']")
     let navIsOpen = dataElement._x_dataStack[0].mobileNavOpen
 
     if (navIsOpen && e.key === "Escape") {
