@@ -11,7 +11,13 @@ document.addEventListener("alpine:init", () => {
         })
     ),
     Alpine.data("loginData", () => ({
-        loggedIn: false,
+        canLogin: function(email, password){
+            if (!email || !password || !this.emailLooksValid(email)) {
+                return false
+            } else {
+                return true
+            }
+        }, 
         rememberMe: localStorage.rememberMe && JSON.parse(localStorage.rememberMe) ? JSON.parse(localStorage.rememberMe): false,
         email: JSON.parse(localStorage.getItem('rememberMe')) ? (localStorage.getItem('savedEmail') ?? '') : '' ,
         emailLooksValid: function(emailString) {
@@ -19,7 +25,7 @@ document.addEventListener("alpine:init", () => {
             return emailRegex.test(emailString) 
         },
         login: function(email, password) {
-            if (!email || !password || !this.emailLooksValid(email)) {
+            if (!this.canLogin(email, password)) {
                 // TODO: add a check in here to also check if the credentials are valid (meaning the hash of the entered credentials matches one of the stored hashes)
                 console.log("Login Failed :(")
                 return

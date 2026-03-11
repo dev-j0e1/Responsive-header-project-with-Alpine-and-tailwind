@@ -34,7 +34,7 @@
 
 
                 <!-- Mobile Navigation -->
-                 <!-- Really need to add a smooth transition to this element maybe by toggling a class called fade in and fade out? will have to look into it  -->
+                 <!-- TODO: Make sure that the mobile actually has the right nav testing with different screen sizes, make sure everything looks the way it should! -->
                  <div x-show="mobileNavOpen" class="absolute text-white bg-blue-950  rounded-2xl sm:hidden items-center justify-center " style="padding: 25px;"x-cloak :class="{ 'slideDown' :  mobileNavOpen }" :aria-expanded="mobileNavOpen">
                     <template x-for="link in links" :key="link.name">
                         <a :aria-expanded="mobileNavOpen" aria-controls="nav" :href="link.href" class="block border-black hover:bg-blue-200 px-4 text-nowrap hover:text-black transition-colors duration-500 rounded-2xl" x-text="link.name" target="_blank" rel="noopener noreferrer"></a>
@@ -71,7 +71,7 @@
                 </div>
 
                 <!-- TODO: This button needs to stay disabled until email is valid and is not empty, also password and email need to be filled to proceed (show error if not) -->
-                <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75" id="signIn-button" type="submit" @click="login(email, document.querySelector('#password-input').value)" style="width: fit-content">Log In</button>
+                <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75" id="signIn-button" type="submit" @click="login(email, document.querySelector('#password-input').value)" :class="canLogin(email, document.querySelector('#password-input').value) ? 'enabled' : 'disabled'" style="width: fit-content">Log In</button>
 
                 <!-- TODO: Show a pop up for successful log in (check user inputted details converted to hash and check against hash stored in the backend) -->
 
