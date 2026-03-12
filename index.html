@@ -52,18 +52,22 @@
             </nav>
         </div>
 
-        <div x-data="loginData" x-init="$watch('rememberMe', value => localStorage.rememberMe = JSON.stringify(value))">
+        <div x-data="loginData" x-init="$watch('rememberMe', value => localStorage.rememberMe = JSON.stringify(value)); $watch('email', ()=>validate()); $watch('password', ()=>validate())">
 
             <form class="grid justify-center gap-3" @submit.prevent="localStorage.setItem('savedEmail', email)"> 
 
                 <div id="email-container" class="grid">
                     <label>Email</label>
-                    <input id="email-input" class="border-2 border-gray-400 login-input" style="width: 60vw"  :value="email" x-model="email"></input>
+                    <input id="email-input" type="email" class="border-2 border-gray-400 login-input" style="width: 60vw"  :value="email" x-model="email"></input>
                 </div>
 
                 <div id="password-container" class="grid">
                     <label>Password</label>
-                    <input id="password-input" class="border-2 border-gray-400 login-input" style="width: 60vw" ></input>
+                    <div class="flex">
+                        <input x-ref="password" :type="showPassword ? 'text' : 'password'" id="password-input" x-model="password" class="border-2 border-gray-400 login-input" style="width: 60vw"></input>
+                        <button id="show-password"  style="width: fit-content; padding: 3px;margin-top: 2px;" @click="showPassword = !showPassword" ><span x-text="showPassword ? '👁️' : '🫣'" ></span></button>
+                    </div>
+
                 </div>
 
                 <div id="rememberMe-container" class="flex gap-2">
@@ -71,15 +75,17 @@
                 </div>
 
                 <!-- TODO: This button needs to stay disabled until email is valid and is not empty, also password and email need to be filled to proceed (show error if not) -->
-                <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75" id="signIn-button" type="submit" @click="login(email, document.querySelector('#password-input').value)" :class="canLogin(email, document.querySelector('#password-input').value) ? 'enabled' : 'disabled'" style="width: fit-content">Log In</button>
+                <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+                     id="signIn-button" type="submit" @click="login(email, $refs.password.value)" style="width: fit-content" x-ref="login" :disabled="!canLogin">Log In</button>
 
                 <!-- TODO: Show a pop up for successful log in (check user inputted details converted to hash and check against hash stored in the backend) -->
 
             </form>
 
             <!-- populate this element with the necessary code to show the result of the signin function -->
-            <div id="login-result-modal">
-
+            <div id="login-result-modal" x-ref="popup" hidden>
+                <button id="exit-login-modal" @click="$refs.popup.hidden = true">x</button>
+                <span id="login-result-text"></span>
             </div>
 
         </div>

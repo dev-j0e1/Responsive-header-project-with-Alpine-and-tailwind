@@ -12,6 +12,25 @@
     z-index: 2;
 }
 
+button[disabled] {
+    background: gray;
+    cursor: auto;
+    opacity: 50%;
+}
+
+#login-result-modal {
+    border: 2px solid rgb(116, 204, 116);
+    padding: 50px;
+    position: relative;
+}
+
+#exit-login-modal {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+
 .slideDown {
     right: 0px;
     animation: slideDown 0.8s ease;

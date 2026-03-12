@@ -11,26 +11,40 @@ document.addEventListener("alpine:init", () => {
         })
     ),
     Alpine.data("loginData", () => ({
-        canLogin: function(email, password){
+        canLogin: false,
+        detailsAreValid: function(email, password){
             if (!email || !password || !this.emailLooksValid(email)) {
                 return false
             } else {
                 return true
             }
         }, 
+        validate: function() {
+            this.canLogin = this.detailsAreValid(this.email, this.password)
+
+        },
+        showPassword: false,
         rememberMe: localStorage.rememberMe && JSON.parse(localStorage.rememberMe) ? JSON.parse(localStorage.rememberMe): false,
         email: JSON.parse(localStorage.getItem('rememberMe')) ? (localStorage.getItem('savedEmail') ?? '') : '' ,
+        password: '',
         emailLooksValid: function(emailString) {
             let emailRegex = /^[A-Za-z0-9_-]+\.?[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\.[A-Za-z]{2,}){1,3}$/
             return emailRegex.test(emailString) 
         },
+        showLoginResult: function(message) {
+            document.querySelector("#login-result-modal").hidden = false
+            document.querySelector("#login-result-text").innerText = message
+
+        },
         login: function(email, password) {
-            if (!this.canLogin(email, password)) {
+            if (!this.detailsAreValid(email, password)) {
                 // TODO: add a check in here to also check if the credentials are valid (meaning the hash of the entered credentials matches one of the stored hashes)
+                this.showLoginResult("Login failed :(")
                 console.log("Login Failed :(")
                 return
             }
 
+            this.showLoginResult("Login successful!") 
             console.log("Login successful!")
 
         }
