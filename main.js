@@ -32,7 +32,7 @@ function bufferToHex(buffer) {
     .join("");
 }
 
-const accountEmail = "coolemail@something.com.au"
+const accountEmail = "JohnDoe@something.com.au"
 const salt = "superSecureSalt22"
 const superSecureStoredHash = "7d33f0ed8fda2d584e0d17bd63b1fbeb28b1c8c34dad98f54e08faa864573a01"
 // password is verySecurePassword20
@@ -89,11 +89,11 @@ document.addEventListener("alpine:init", () => {
         },
         login: async function(email, password) {
             const hash = await hashPassword(password, salt);
-            if (!this.detailsAreValid(email, password) || hash != superSecureStoredHash || email != accountEmail) {
-                this.showLoginResult("Login failed :(", false)
+            if (this.detailsAreValid(email, password) && hash === superSecureStoredHash && email.toLowerCase() === accountEmail.toLowerCase()) {
+                this.showLoginResult(`Login successful! \n Welcome back ${email.split("@")[0]}`, true) 
             } else {
+                this.showLoginResult("Login failed :(", false)
 
-                this.showLoginResult("Login successful!", true) 
             }
         }
 
