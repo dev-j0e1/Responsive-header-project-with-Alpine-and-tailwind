@@ -19,7 +19,7 @@ button[disabled] {
 }
 
 #login-result-modal {
-    border: 2px solid rgb(116, 204, 116);
+    border: 2px solid rgb(233, 98, 98);
     padding: 50px;
     position: relative;
 }
@@ -28,6 +28,12 @@ button[disabled] {
     position: absolute;
     top: 20px;
     right: 20px;
+}
+
+
+.success {
+    border: 2px solid  rgb(102, 217, 102) !important;
+
 }
 
 
@@ -55,4 +61,3 @@ button {
 [x-cloak] {
     display: none !important;
 }
-

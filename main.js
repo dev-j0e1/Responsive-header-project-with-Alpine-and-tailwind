@@ -1,3 +1,42 @@
+
+async function hashPassword(password, salt) {
+  const encoder = new TextEncoder();
+
+  const keyMaterial = await crypto.subtle.importKey(
+    "raw",
+    encoder.encode(password),
+    { name: "PBKDF2" },
+    false,
+    ["deriveBits"]
+  );
+
+  const derivedBits = await crypto.subtle.deriveBits(
+    {
+      name: "PBKDF2",
+      salt: encoder.encode(salt),
+      iterations: 100000,
+      hash: "SHA-256"
+    },
+    keyMaterial,
+    256
+  );
+
+  return bufferToHex(derivedBits);
+}
+
+window.doHash = hashPassword
+
+function bufferToHex(buffer) {
+  return [...new Uint8Array(buffer)]
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+const accountEmail = "coolemail@something.com.au"
+const salt = "superSecureSalt22"
+const superSecureStoredHash = "7d33f0ed8fda2d584e0d17bd63b1fbeb28b1c8c34dad98f54e08faa864573a01"
+// password is verySecurePassword20
+
 document.addEventListener("alpine:init", () => {
     Alpine.data("headerData", () => ({
         mobileNavOpen: false,
@@ -31,22 +70,29 @@ document.addEventListener("alpine:init", () => {
             let emailRegex = /^[A-Za-z0-9_-]+\.?[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\.[A-Za-z]{2,}){1,3}$/
             return emailRegex.test(emailString) 
         },
-        showLoginResult: function(message) {
-            document.querySelector("#login-result-modal").hidden = false
+        showLoginResult: function(message, success) {
+            let modal = document.querySelector("#login-result-modal")
+            modal.hidden = false
             document.querySelector("#login-result-text").innerText = message
-
-        },
-        login: function(email, password) {
-            if (!this.detailsAreValid(email, password)) {
-                // TODO: add a check in here to also check if the credentials are valid (meaning the hash of the entered credentials matches one of the stored hashes)
-                this.showLoginResult("Login failed :(")
-                console.log("Login Failed :(")
-                return
+            if (success) {
+                if (!modal.classList.toString().includes("success")) {
+                    modal.classList.add("success")
+                }
+            } else {
+                if (modal.classList.toString().includes("success")) {
+                    modal.classList.remove("success")
+                }
             }
 
-            this.showLoginResult("Login successful!") 
-            console.log("Login successful!")
+        },
+        login: async function(email, password) {
+            const hash = await hashPassword(password, salt);
+            if (!this.detailsAreValid(email, password) || hash != superSecureStoredHash || email != accountEmail) {
+                this.showLoginResult("Login failed :(", false)
+            } else {
 
+                this.showLoginResult("Login successful!", true) 
+            }
         }
 
     }))
