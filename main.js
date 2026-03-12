@@ -67,6 +67,8 @@ document.addEventListener("alpine:init", () => {
         email: JSON.parse(localStorage.getItem('rememberMe')) ? (localStorage.getItem('savedEmail') ?? '') : '' ,
         password: '',
         emailLooksValid: function(emailString) {
+            // I found out that I could just use the .validity.valid property on the email input, however I didn't like that you could 
+            // type the email without the .com part which shouldn't be valid, so I used this regex to better validate if it looks like an email.
             let emailRegex = /^[A-Za-z0-9_-]+\.?[A-Za-z0-9_-]+@[A-Za-z0-9-]+(\.[A-Za-z]{2,}){1,3}$/
             return emailRegex.test(emailString) 
         },
