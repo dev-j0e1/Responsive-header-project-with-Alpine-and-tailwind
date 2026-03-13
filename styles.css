@@ -18,10 +18,45 @@ button[disabled] {
     opacity: 50%;
 }
 
+.success {
+    border: 5px solid #1DB954 !important;
+
+}
+
 #login-result-modal {
-    border: 2px solid rgb(233, 98, 98);
+    opacity: 0;
     padding: 50px;
-    position: relative;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    transition: all 0.3s ease;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+}
+
+
+#login-result-container {
+    background: gray;
+    border: 5px solid black;
+    height: 50%;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+       position: relative; 
+    background: white;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    pointer-events: all;
+    border: 5px solid #FF0000;
+}
+.modal-open {
+    opacity: 1 !important;
+    z-index: 9999 !important;
+    transition: all 0.3s ease;
 }
 
 #exit-login-modal {
@@ -31,10 +66,6 @@ button[disabled] {
 }
 
 
-.success {
-    border: 2px solid  rgb(102, 217, 102) !important;
-
-}
 
 
 .slideDown {

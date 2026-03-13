@@ -1,7 +1,10 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
     <head>
 
 
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
         <link rel="stylesheet" href="./styles.css"></link>
@@ -82,19 +85,20 @@
                 </div>
 
                 <button class="px-4 py-2 font-semibold text-white bg-blue-600 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
-                     id="signIn-button" type="submit" @click="login(email, $refs.password.value)" style="width: fit-content" x-ref="login" :disabled="!canLogin">Log In</button>
+                     id="signIn-button" type="submit" @click="login(email, $refs.password.value); $refs.popup.classList.add('modal-open')" style="width: fit-content" x-ref="login" :disabled="!canLogin">Log In</button>
 
 
             </form>
 
             <div id="login-result-modal" x-ref="popup" hidden>
-
-                <button id="exit-login-modal" @click="$refs.popup.hidden = true">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
-                    </svg>
-                </button>
+                <div id="login-result-container">
+                    <button id="exit-login-modal"  @click="$refs.popup.hidden = true; "> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 <span id="login-result-text"></span>
+
+                </div>
             </div>
 
         </div>

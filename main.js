@@ -73,8 +73,9 @@ document.addEventListener("alpine:init", () => {
             return emailRegex.test(emailString) 
         },
         showLoginResult: function(message, success) {
-            let modal = document.querySelector("#login-result-modal")
-            modal.hidden = false
+            let thingy = document.querySelector("#login-result-modal")
+            thingy.hidden = false
+            let modal = document.querySelector("#login-result-container")
             document.querySelector("#login-result-text").innerText = message
             if (success) {
                 if (!modal.classList.toString().includes("success")) {
