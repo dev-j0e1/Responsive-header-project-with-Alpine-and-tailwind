@@ -35,7 +35,6 @@ function bufferToHex(buffer) {
 const accountEmail = "JohnDoe@something.com.au"
 const salt = "superSecureSalt22"
 const superSecureStoredHash = "7d33f0ed8fda2d584e0d17bd63b1fbeb28b1c8c34dad98f54e08faa864573a01"
-// password is verySecurePassword20
 
 document.addEventListener("alpine:init", () => {
     Alpine.data("headerData", () => ({
