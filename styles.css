@@ -1,8 +1,10 @@
 @import "tailwindcss";
 
+/*
 * {
     touch-action: none;
  }
+ */
 
 @keyframes slideDown {
 
