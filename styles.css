@@ -6,6 +6,19 @@
  }
  */
 
+@keyframes popup {
+    0% {
+        opacity: 0%;
+        scale: 0;
+
+    }
+    100% {
+        opacity: 100%;
+        scale: 1;
+
+    }
+}
+
 @keyframes slideDown {
 
     0% {
@@ -41,24 +54,26 @@ button[disabled] {
     justify-content: center;
     align-items: center;
     pointer-events: none;
+    animation: popup 0.5s ease;
 
 }
 
 
 #login-result-container {
-    background: gray;
     border: 5px solid black;
+     max-width: 600px;
     height: 50%;
     width: 80%;
     display: flex;
     justify-content: center;
     align-items: center;
        position: relative; 
-    background: white;
     border-radius: 25px;
+    background: lightgray;
     transition: all 0.3s ease;
     pointer-events: all;
     border: 5px solid #FF0000;
+
 }
 .modal-open {
     opacity: 1 !important;
