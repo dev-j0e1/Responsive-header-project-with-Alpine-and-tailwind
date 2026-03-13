@@ -1,6 +1,11 @@
 @import "tailwindcss";
 
+* {
+    touch-action: none;
+ }
+
 @keyframes slideDown {
+
     0% {
         transform: translate(0px, -150px)
     }
